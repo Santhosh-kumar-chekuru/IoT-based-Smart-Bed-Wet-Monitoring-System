@@ -1,0 +1,18 @@
+// Assuming you've trained a model and have coefficients
+const float coefficient1 = 0.5; // Example coefficient for moisture
+const float coefficient2 = 0.3; // Example coefficient for movement
+const float intercept = -1.0;    // Example intercept
+
+void loop() {
+    int moistureLevel = analogRead(moistureSensorPin);
+    int movementData = readMovementSensor(); // Function to read movement data
+
+    // Calculate the prediction using linear regression formula
+    float prediction = coefficient1 * moistureLevel + coefficient2 * movementData + intercept;
+
+    if (prediction > threshold) {
+        Serial.println("Predicted Wet!");
+    } else {
+        Serial.println("Predicted Dry!");
+    }
+}
